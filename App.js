@@ -25,7 +25,8 @@ export default class App extends Component<Props> {
   }
 
   calcular(){
-    let imc = this.state.massa / (this.state.altura * this.state.altura)
+    this.state.altura = this.state.altura.replace(",", ".");
+    let imc = (this.state.massa / (this.state.altura * this.state.altura)).toFixed(2).toString().replace(".", ",");
     let s = this.state
     s.resultado = imc
     this.setState(s)
@@ -71,7 +72,7 @@ export default class App extends Component<Props> {
           <TextInput placeholder="Altura" keyboardType="numeric" style={styles.input} onChangeText={(altura)=>{this.setState({altura})}}/>
         </View>
         <TouchableOpacity onPress={this.calcular}><Text  style={styles.button}>Calcular</Text></TouchableOpacity>
-        <Text  style={styles.resultado}>{this.state.resultado.toFixed(2)}</Text>
+        <Text  style={styles.resultado}>{this.state.resultado}</Text>
         <Text  style={[styles.resultado, {fontSize: 40}]}>{this.state.resultadoText}</Text>
       </View>
     );
