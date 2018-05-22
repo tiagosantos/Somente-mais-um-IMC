@@ -12,11 +12,14 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-
+import SplashScreen from 'react-native-splash-screen';
 
 
 type Props = {};
 export default class App extends Component<Props> {
+  componentDidMount() {
+    SplashScreen.hide()
+  }
 
   constructor(props){
     super(props)
