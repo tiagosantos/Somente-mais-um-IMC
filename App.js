@@ -26,7 +26,7 @@ export default class App extends Component<Props> {
 
   calcular(){
     this.state.altura = this.state.altura.replace(",", ".");
-    let imc = (this.state.massa / (this.state.altura * this.state.altura)).toFixed(2).toString().replace(".", ",");
+    let imc = (this.state.massa / (this.state.altura * this.state.altura)).toFixed(2)
     let s = this.state
     s.resultado = imc
     this.setState(s)
@@ -62,6 +62,7 @@ export default class App extends Component<Props> {
       s.resultadoText = "Obesidade Grau III"
 
     }
+    s.resultado = s.resultado.toString().replace(".", ",");
 
   }
   render() {
