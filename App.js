@@ -10,7 +10,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Alert
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -28,45 +29,51 @@ export default class App extends Component<Props> {
   }
 
   calcular(){
-    this.state.altura = this.state.altura.replace(",", ".");
-    let imc = (this.state.massa / (this.state.altura * this.state.altura)).toFixed(2)
-    let s = this.state
-    s.resultado = imc
-    this.setState(s)
 
-    if (s.resultado < 16) {
-      s.resultadoText = "Magreza grave"
-
+    if(this.state.altura == '' || this.state.massa == '') {
+      Alert.alert("Por favor, preencha os dados necessários.");
     }
-    else if (s.resultado < 17) {
-      s.resultadoText = "Magreza moderada"
-    }
-    else if (s.resultado < 18.5) {
-      s.resultadoText = "Magreza leve"
+    else{
 
-    }
-    else if (s.resultado < 25) {
-      s.resultadoText = "Saudável"
+      this.state.altura = this.state.altura.replace(",", ".");
+      let imc = (this.state.massa / (this.state.altura * this.state.altura)).toFixed(2)
+      let s = this.state
+      s.resultado = imc
+      this.setState(s)
 
-    }
-    else if (s.resultado < 30) {
-      s.resultadoText = "Sobrepeso"
+      if (s.resultado < 16) {
+        s.resultadoText = "Magreza grave"
 
-    }
-    else if (s.resultado < 35) {
-      s.resultadoText = "Obesidade Grau I"
+      }
+      else if (s.resultado < 17) {
+        s.resultadoText = "Magreza moderada"
+      }
+      else if (s.resultado < 18.5) {
+        s.resultadoText = "Magreza leve"
 
-    }
-    else if (s.resultado < 40) {
-      s.resultadoText = "Obesidade Grau II"
+      }
+      else if (s.resultado < 25) {
+        s.resultadoText = "Saudável"
 
-    }
-    else  {
-      s.resultadoText = "Obesidade Grau III"
+      }
+      else if (s.resultado < 30) {
+        s.resultadoText = "Sobrepeso"
 
-    }
-    s.resultado = s.resultado.toString().replace(".", ",");
+      }
+      else if (s.resultado < 35) {
+        s.resultadoText = "Obesidade Grau I"
 
+      }
+      else if (s.resultado < 40) {
+        s.resultadoText = "Obesidade Grau II"
+
+      }
+      else  {
+        s.resultadoText = "Obesidade Grau III"
+
+      }
+      s.resultado = s.resultado.toString().replace(".", ",");
+    }
   }
   render() {
     return (
